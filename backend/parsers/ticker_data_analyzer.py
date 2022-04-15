@@ -1,6 +1,5 @@
 from functools import reduce
 import numpy as np
-import operator
 
 
 def find_max(stock_ticker_results, key):
