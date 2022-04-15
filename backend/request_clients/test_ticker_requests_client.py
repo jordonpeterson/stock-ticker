@@ -29,7 +29,7 @@ class TestTickerRequestClient(TestCase):
             self.ticker_request_client.get_ticker_info(self.query_param_is_blank_lambda_event)
 
     def test_400_response_from_external_server_is_returned(self):
-        # TODO convet this to use a mock
+        # TODO convert this to use a mock
         result = self.ticker_request_client.get_ticker_info(self.invalid_start_date_lambda_event)
 
         self.assertEquals(result.json()['status'], "ERROR")
