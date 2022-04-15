@@ -1,6 +1,5 @@
 import json
 from request_clients import ticker_requests_client
-import requests
 
 print('Loading function')
 

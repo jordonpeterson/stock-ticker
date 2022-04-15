@@ -32,7 +32,7 @@ class TestTickerRequestClient(TestCase):
         # TODO convert this to use a mock
         result = self.ticker_request_client.get_ticker_info(self.invalid_start_date_lambda_event)
 
-        self.assertEquals(result.json()['status'], "ERROR")
+        self.assertEqual(result.json()['status'], "ERROR")
 
     happy_path_lambda_event = {'httpMethod': 'GET',
                                'queryStringParameters': {'ticker': 'AAPL',
