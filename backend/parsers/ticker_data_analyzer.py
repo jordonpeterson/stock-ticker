@@ -28,6 +28,7 @@ class TickerDataAnalyzer:
         min_price = find_min(stock_ticker_results, self.min_price_key)
         return round(min_price, self.price_significant_figures)
 
+    # TODO verify if we calculated average price the right way
     def find_avg_price(self, stock_ticker_results):
         total_price = 0
         for result in stock_ticker_results:
