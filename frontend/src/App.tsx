@@ -1,10 +1,11 @@
 import React from 'react';
 import './App.css';
+import StockTicker from "./components/StockTicker/StockTicker";
 
 function App() {
     return (
         <div className="App">
-            <h1>Stock Ticker</h1>
+            <StockTicker></StockTicker>
         </div>
     );
 }
