@@ -1,8 +1,9 @@
-import unittest
+from unittest import TestCase
 from ticker_requests_client import TickerRequestClient
 
 
-class TestTickerRequestClient(unittest.TestCase):
+# TODO Mock responses from server
+class TestTickerRequestClient(TestCase):
     def setUp(self):
         self.ticker_request_client = TickerRequestClient()
 
@@ -28,9 +29,10 @@ class TestTickerRequestClient(unittest.TestCase):
             self.ticker_request_client.get_ticker_info(self.query_param_is_blank_lambda_event)
 
     def test_400_response_from_external_server_is_returned(self):
+        # TODO convet this to use a mock
         result = self.ticker_request_client.get_ticker_info(self.invalid_start_date_lambda_event)
 
-        assert result
+        self.assertEquals(result.json()['status'], "ERROR")
 
     happy_path_lambda_event = {'httpMethod': 'GET',
                                'queryStringParameters': {'ticker': 'AAPL',
