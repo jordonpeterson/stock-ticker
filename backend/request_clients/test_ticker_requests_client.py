@@ -27,6 +27,11 @@ class TestTickerRequestClient(unittest.TestCase):
         with self.assertRaises(ValueError):
             self.ticker_request_client.get_ticker_info(self.query_param_is_blank_lambda_event)
 
+    def test_400_response_from_external_server_is_returned(self):
+        result = self.ticker_request_client.get_ticker_info(self.invalid_start_date_lambda_event)
+
+        assert result
+
     happy_path_lambda_event = {'httpMethod': 'GET',
                                'queryStringParameters': {'ticker': 'AAPL',
                                                          'startDate': '2020-01-01',
@@ -50,5 +55,11 @@ class TestTickerRequestClient(unittest.TestCase):
 
     missing_start_date_lambda_event = {'httpMethod': 'GET',
                                        'queryStringParameters': {'ticker': 'AAPL',
+                                                                 'endDate': '2020-12-31'},
+                                       }
+
+    invalid_start_date_lambda_event = {'httpMethod': 'GET',
+                                       'queryStringParameters': {'ticker': 'AAPL',
+                                                                 'startDate': 'INVALID',
                                                                  'endDate': '2020-12-31'},
                                        }
