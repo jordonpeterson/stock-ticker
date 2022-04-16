@@ -30,6 +30,15 @@ class TestTickerDataAnalyzer(TestCase):
         result = self.ticker_data_analyzer.find_avg_volume(self.results)
         self.assertEqual(1000, result)
 
+    def test_generate_report(self):
+        result = self.ticker_data_analyzer.generate_report(self.results)
+        self.assertEqual(150, result.max_price)
+        self.assertEqual(30, result.min_price)
+        self.assertEqual(81.67, result.avg_price)
+        self.assertEqual(1500, result.max_volume)
+        self.assertEqual(500, result.min_volume)
+        self.assertEqual(1000, result.avg_volume)
+
     results = [
         {
             "v": 500,
