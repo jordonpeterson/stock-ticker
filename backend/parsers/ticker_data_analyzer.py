@@ -23,24 +23,24 @@ class TickerDataAnalyzer:
     price_significant_figures = 2
 
     def generate_report(self, stock_ticker_results):
-        max_price = self.find_max_price(stock_ticker_results)
-        min_price = self.find_min_price(stock_ticker_results)
-        avg_price = self.find_avg_price(stock_ticker_results)
-        max_volume = self.find_max_volume(stock_ticker_results)
-        min_volume = self.find_min_volume(stock_ticker_results)
-        avg_volume = self.find_avg_volume(stock_ticker_results)
+        max_price = self._find_max_price(stock_ticker_results)
+        min_price = self._find_min_price(stock_ticker_results)
+        avg_price = self._find_avg_price(stock_ticker_results)
+        max_volume = self._find_max_volume(stock_ticker_results)
+        min_volume = self._find_min_volume(stock_ticker_results)
+        avg_volume = self._find_avg_volume(stock_ticker_results)
         return TickerResultsReport(max_price, min_price, avg_price, max_volume, min_volume, avg_volume)
 
-    def find_max_price(self, stock_ticker_results):
+    def _find_max_price(self, stock_ticker_results):
         max_price = find_max(stock_ticker_results, self.max_price_key)
         return round(max_price, self.price_significant_figures)
 
-    def find_min_price(self, stock_ticker_results):
+    def _find_min_price(self, stock_ticker_results):
         min_price = find_min(stock_ticker_results, self.min_price_key)
         return round(min_price, self.price_significant_figures)
 
     # TODO verify if we calculated average price the right way
-    def find_avg_price(self, stock_ticker_results):
+    def _find_avg_price(self, stock_ticker_results):
         total_price = 0
         for result in stock_ticker_results:
             total_price += np.mean([
@@ -50,13 +50,13 @@ class TickerDataAnalyzer:
         avg_price = total_price / len(stock_ticker_results)
         return round(avg_price, self.price_significant_figures)
 
-    def find_max_volume(self, stock_ticker_results):
+    def _find_max_volume(self, stock_ticker_results):
         return find_max(stock_ticker_results, self.volume_key)
 
-    def find_min_volume(self, stock_ticker_results):
+    def _find_min_volume(self, stock_ticker_results):
         return find_min(stock_ticker_results, self.volume_key)
 
-    def find_avg_volume(self, stock_ticker_results):
+    def _find_avg_volume(self, stock_ticker_results):
         cumulative_volume = 0
         for result in stock_ticker_results:
             cumulative_volume += result[self.volume_key]

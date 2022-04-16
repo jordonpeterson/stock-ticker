@@ -7,27 +7,27 @@ class TestTickerDataAnalyzer(TestCase):
         self.ticker_data_analyzer = TickerDataAnalyzer()
 
     def test_find_max_price(self):
-        result = self.ticker_data_analyzer.find_max_price(self.results)
+        result = self.ticker_data_analyzer._find_max_price(self.results)
         self.assertEqual(150, result)
 
     def test_find_min_price(self):
-        result = self.ticker_data_analyzer.find_min_price(self.results)
+        result = self.ticker_data_analyzer._find_min_price(self.results)
         self.assertEqual(30, result)
 
     def test_find_avg_price(self):
-        result = self.ticker_data_analyzer.find_avg_price(self.results)
+        result = self.ticker_data_analyzer._find_avg_price(self.results)
         self.assertEqual(81.67, result)
 
     def test_find_max_volume(self):
-        result = self.ticker_data_analyzer.find_max_volume(self.results)
+        result = self.ticker_data_analyzer._find_max_volume(self.results)
         self.assertEqual(1500, result)
 
     def test_find_min_volume(self):
-        result = self.ticker_data_analyzer.find_min_volume(self.results)
+        result = self.ticker_data_analyzer._find_min_volume(self.results)
         self.assertEqual(500, result)
 
     def test_find_avg_volume(self):
-        result = self.ticker_data_analyzer.find_avg_volume(self.results)
+        result = self.ticker_data_analyzer._find_avg_volume(self.results)
         self.assertEqual(1000, result)
 
     def test_generate_report(self):
