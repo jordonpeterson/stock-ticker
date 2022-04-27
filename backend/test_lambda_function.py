@@ -12,6 +12,10 @@ class MyTestCase(unittest.TestCase):
         result = lambda_function.lambda_handler(self.failure_lambda_event, {})
         assert result['statusCode'] == 400
 
+    def test_lambda_handler_non_existent_ticker(self):
+        result = lambda_function.lambda_handler(self.non_existent_ticker_lambda_event, {})
+        assert result['statusCode'] == 400
+
     success_lambda_event = {'httpMethod': 'GET',
                             'queryStringParameters': {'ticker': 'AAPL',
                                                       'startDate': '2020-01-01',
@@ -22,6 +26,11 @@ class MyTestCase(unittest.TestCase):
                                                       'startDate': 'INVALID',
                                                       'endDate': '2020-12-31'},
                             }
+    non_existent_ticker_lambda_event = {'httpMethod': 'GET',
+                                        'queryStringParameters': {'ticker': 'ATLA',
+                                                                  'startDate': '2020-01-01',
+                                                                  'endDate': '2020-12-31'},
+                                        }
 
 
 if __name__ == '__main__':
