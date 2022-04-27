@@ -1,13 +1,14 @@
 import json
-from request_clients import ticker_requests_client
+from request_clients.ticker_requests_client import TickerRequestClient
+from ticker_data_analyzer import TickerDataAnalyzer
 
 print('Loading function')
 
 
-def respond(err, res=None):
+def respond(status_code, res):
     return {
-        'statusCode': '400' if err else '200',
-        'body': err.message if err else json.dumps(res),
+        'statusCode': status_code,
+        'body': json.dumps(res),
         'headers': {
             'Content-Type': 'application/json',
         },
@@ -15,13 +16,14 @@ def respond(err, res=None):
 
 
 def lambda_handler(event, context):
-    ticker_client = ticker_requests_client.TickerRequestClient()
+    ticker_client = TickerRequestClient()
+    report_generator = TickerDataAnalyzer()
 
-    response = ticker_client.get_ticker_info(event)
+    ticker_results = ticker_client.get_ticker_info(event)
+    if ticker_results.json()['status'] == "ERROR":
+        return respond(ticker_results.status_code, ticker_results.text)
+    results = ticker_results.json()['results']
 
-    info = {
-        'context': str(context),
-        'event': str(event),
-        'response': str(response.text)
-    }
-    return respond(None, info)
+    report = report_generator.generate_report(results)
+
+    return respond(200, report)

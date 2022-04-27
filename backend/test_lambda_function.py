@@ -1,24 +1,28 @@
-from unittest import TestCase
-import json
+import unittest
 
 from backend import lambda_function
 
 
-class Test(TestCase):
-    def test_lambda_handler(self):
-        result = lambda_function.lambda_handler(self.lambdaEvent, {})
-        body = json.loads(result['body'])
-        response = json.loads(body['response'])
-        assert response
+class MyTestCase(unittest.TestCase):
+    def test_lambda_handler_success(self):
+        result = lambda_function.lambda_handler(self.success_lambda_event, {})
+        assert result['statusCode'] == 200
 
-    lambdaEvent = {'resource': '/stock-ticker',
-                   'path': '/stock-ticker',
-                   'httpMethod': 'GET',
-                   'headers': {
-                       'Accept': '*/*', 'Accept-Encoding': 'gzip, deflate, br', 'Cache-Control': 'no-cache',
-                       'Host': '4u13q8f5d9.execute-api.us-east-2.amazonaws.com',
-                   },
-                   'queryStringParameters': {'ticker': 'AAPL',
-                                             'startDate': '2020-01-01',
-                                             'endDate': '2020-12-31'},
-                   'body': None}
+    def test_lambda_handler_failure(self):
+        result = lambda_function.lambda_handler(self.failure_lambda_event, {})
+        assert result['statusCode'] == 400
+
+    success_lambda_event = {'httpMethod': 'GET',
+                            'queryStringParameters': {'ticker': 'AAPL',
+                                                      'startDate': '2020-01-01',
+                                                      'endDate': '2020-12-31'},
+                            }
+    failure_lambda_event = {'httpMethod': 'GET',
+                            'queryStringParameters': {'ticker': 'AAPL',
+                                                      'startDate': 'INVALID',
+                                                      'endDate': '2020-12-31'},
+                            }
+
+
+if __name__ == '__main__':
+    unittest.main()

@@ -30,7 +30,7 @@ class TickerRequestClient:
         start_date = get_query_param(event, 'startDate')
         end_date = get_query_param(event, 'endDate')
         response = self.make_ticker_info_rest_request(ticker, start_date, end_date)
-        return response.json()['results']
+        return response
 
     def make_ticker_info_rest_request(self, ticker, start_date, end_date):
         # move API key to environment variable in lambda

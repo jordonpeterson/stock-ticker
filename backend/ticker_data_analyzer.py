@@ -1,6 +1,5 @@
 from functools import reduce
 import numpy as np
-from ticker_results_report import TickerResultsReport
 
 
 def find_max(stock_ticker_results, key):
@@ -17,6 +16,9 @@ def find_min(stock_ticker_results, key):
 
 # TODO could I find a more efficient way to compute these values? This could be a problem with big data
 class TickerDataAnalyzer:
+    def __init__(self):
+        pass
+
     max_price_key = 'h'
     min_price_key = 'l'
     volume_key = 'v'
@@ -29,7 +31,12 @@ class TickerDataAnalyzer:
         max_volume = self._find_max_volume(stock_ticker_results)
         min_volume = self._find_min_volume(stock_ticker_results)
         avg_volume = self._find_avg_volume(stock_ticker_results)
-        return TickerResultsReport(max_price, min_price, avg_price, max_volume, min_volume, avg_volume)
+        return {"max_price": max_price,
+                "min_price": min_price,
+                "avg_price": avg_price,
+                "max_volume": max_volume,
+                "min_volume": min_volume,
+                "avg_volume": avg_volume}
 
     def _find_max_price(self, stock_ticker_results):
         max_price = find_max(stock_ticker_results, self.max_price_key)

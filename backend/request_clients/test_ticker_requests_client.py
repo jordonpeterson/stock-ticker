@@ -1,3 +1,4 @@
+import unittest
 from unittest import TestCase
 from ticker_requests_client import TickerRequestClient
 
@@ -28,11 +29,11 @@ class TestTickerRequestClient(TestCase):
         with self.assertRaises(ValueError):
             self.ticker_request_client.get_ticker_info(self.query_param_is_blank_lambda_event)
 
-    # def test_400_response_from_external_server_is_returned(self):
-    #     # TODO convert this to use a mock
-    #     result = self.ticker_request_client.get_ticker_info(self.invalid_start_date_lambda_event)
-    #
-    #     self.assertEqual(result.json()['status'], "ERROR")
+    def test_400_response_from_external_server_is_returned(self):
+        # TODO convert this to use a mock
+        result = self.ticker_request_client.get_ticker_info(self.invalid_start_date_lambda_event)
+
+        self.assertEqual(result.json()['status'], "ERROR")
 
     happy_path_lambda_event = {'httpMethod': 'GET',
                                'queryStringParameters': {'ticker': 'AAPL',
@@ -65,3 +66,7 @@ class TestTickerRequestClient(TestCase):
                                                                  'startDate': 'INVALID',
                                                                  'endDate': '2020-12-31'},
                                        }
+
+
+if __name__ == '__main__':
+    unittest.main()
