@@ -2,21 +2,13 @@ import React, {FC, useState} from 'react';
 import styles from './StockTicker.module.css';
 import DisplayTable from "../DisplayTable/DisplayTable";
 import {TickerData} from "../../models/TickerData";
+import {useSelector} from "react-redux";
 
 interface StockTickerProps {
 }
 
-let mockTickerData: TickerData = {
-    max_price: 0,
-    min_price: 0,
-    avg_price: 0,
-    max_volume: 0,
-    min_volume: 0,
-    avg_volume: 0
-}
-
 const StockTicker: FC<StockTickerProps> = () => {
-    const [tickerData, setTickerData] = useState(mockTickerData)
+    const [tickerData, setTickerData] = useState(useSelector((state: any) => state.stockTicker))
     const [ticker, setTicker] = useState('')
 
     async function handleSubmit(event: any) {
