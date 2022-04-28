@@ -1,13 +1,16 @@
-import {createSlice} from '@reduxjs/toolkit'
-import {TickerData} from "../../models/TickerData";
+import {createAsyncThunk, createSlice} from '@reduxjs/toolkit'
 
-const initialState: TickerData = {
-    max_price: 0,
-    min_price: 0,
-    avg_price: 0,
-    max_volume: 0,
-    min_volume: 0,
-    avg_volume: 0
+const initialState = {
+    tickerInfo: {
+        max_price: 0,
+        min_price: 0,
+        avg_price: 0,
+        max_volume: 0,
+        min_volume: 0,
+        avg_volume: 0
+    },
+    status: 'idle',
+    error: null
 }
 
 export const stockTickerSlice = createSlice({
@@ -20,7 +23,12 @@ export const stockTickerSlice = createSlice({
     }
 })
 
+export const loadTickerData = createAsyncThunk('stockTicker/loadTickerData', async () => {
+
+    }
+)
+
 export const {setStockTickerData} = stockTickerSlice.actions
 
-export const selectStockTickerData = (state: any) => state.stockTicker
+export const selectStockTickerData = (state: any) => state.stockTicker.tickerInfo
 

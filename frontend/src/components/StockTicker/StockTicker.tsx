@@ -1,9 +1,9 @@
 import React, {FC, useState} from 'react';
 import styles from './StockTicker.module.css';
 import DisplayTable from "../DisplayTable/DisplayTable";
-import {TickerData} from "../../models/TickerData";
 import {useSelector} from "react-redux";
 import {selectStockTickerData} from "./stockTickerSlice";
+import {getTickerData} from "./stockTickerAPI";
 
 interface StockTickerProps {
 }
@@ -23,18 +23,6 @@ const StockTicker: FC<StockTickerProps> = () => {
 
     async function handleChange(event: any) {
         await setTicker(event.target.value)
-    }
-
-    async function getTickerData(ticker: string = 'AAPL',
-                                 startDate: string = '2020-01-01',
-                                 endDate: string = '2020-12-31') {
-
-        const url = `https://4u13q8f5d9.execute-api.us-east-2.amazonaws.com/prod/stock-ticker?` +
-            `ticker=${ticker}&startDate=${startDate}&endDate=${endDate}`
-        const result = await fetch(url)
-        const response: TickerData = await result.json()
-        console.log(response)
-        return response
     }
 
     return (
