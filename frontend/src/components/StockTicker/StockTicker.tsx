@@ -3,12 +3,13 @@ import styles from './StockTicker.module.css';
 import DisplayTable from "../DisplayTable/DisplayTable";
 import {TickerData} from "../../models/TickerData";
 import {useSelector} from "react-redux";
+import {selectStockTickerData} from "./stockTickerSlice";
 
 interface StockTickerProps {
 }
 
 const StockTicker: FC<StockTickerProps> = () => {
-    const [tickerData, setTickerData] = useState(useSelector((state: any) => state.stockTicker))
+    const [tickerData, setTickerData] = useState(useSelector(selectStockTickerData))
     const [ticker, setTicker] = useState('')
 
     async function handleSubmit(event: any) {
