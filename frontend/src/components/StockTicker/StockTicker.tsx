@@ -26,13 +26,15 @@ const StockTicker: FC<StockTickerProps> = () => {
 
     return (
         <div className={styles.StockTicker} data-testid="StockTicker">
-            <form onSubmit={handleSubmit}>
-                <label>
-                    Enter a Stock Ticker
-                    <input type="text" name="ticker" value={ticker} onChange={handleChange}/>
-                </label>
-                <input type="submit" value="Search"/>
-            </form>
+            <div id="ticker-form-wrapper">
+                <form onSubmit={handleSubmit}>
+                    <label>
+                        Enter a Stock Ticker
+                        <input type="text" name="ticker" value={ticker} onChange={handleChange}/>
+                    </label>
+                    <input id="ticker-form-submit-button" type="submit" value="Search"/>
+                </form>
+            </div>
             <DisplayTable tickerData={tickerData}></DisplayTable>
         </div>
     )
