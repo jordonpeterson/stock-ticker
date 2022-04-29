@@ -18,9 +18,9 @@ const DisplayTable: FC<DisplayTableProps> = ({tickerData}) => (
             </tr>
             <tr id="row-1" className={"odd-row"}>
                 <td id="tr1-1">Price</td>
-                <td id="tr1-2">{tickerData.max_price}</td>
-                <td id="tr1-3">{tickerData.min_price}</td>
-                <td id="tr1-4">{tickerData.avg_price}</td>
+                <td id="tr1-2">${tickerData.max_price}</td>
+                <td id="tr1-3">${tickerData.min_price}</td>
+                <td id="tr1-4">${tickerData.avg_price}</td>
             </tr>
             <tr id="row-2" className={"even-row"}>
                 <td id="tr2-1">Volume</td>

@@ -12,14 +12,15 @@
 }
 
 #ticker-form-wrapper {
-    height: 30%;
+    min-height: 100px;
     width: 100%;
 }
 
 #ticker-form-submit-button {
     background: rgba(71,150,236,255);
+    min-width: 100px;
     color: white;
     border: none;
-    padding: 10px;
-    border-radius: 20%;
+    padding: 5px;
+    border-radius: 15%;
 }
