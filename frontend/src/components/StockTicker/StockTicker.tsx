@@ -1,14 +1,14 @@
 import React, {FC, useState} from 'react';
 import styles from './StockTicker.module.css';
 import DisplayTable from "../DisplayTable/DisplayTable";
-import {useSelector} from "react-redux";
-import {selectStockTickerData} from "./stockTickerSlice";
-import {getTickerData} from "./stockTickerAPI";
+import {useDispatch, useSelector} from "react-redux";
+import {loadTickerData, selectStockTickerData} from "./stockTickerSlice";
 
 interface StockTickerProps {
 }
 
 const StockTicker: FC<StockTickerProps> = () => {
+    const dispatch = useDispatch();
     const [tickerData, setTickerData] = useState(useSelector(selectStockTickerData))
     const [ticker, setTicker] = useState('')
 
@@ -16,7 +16,7 @@ const StockTicker: FC<StockTickerProps> = () => {
         event.preventDefault()
         if (ticker) {
             console.log('Selected Ticker: ' + ticker)
-            const response = await getTickerData(ticker)
+            const response = dispatch(loadTickerData())
             setTickerData(response)
         }
     }

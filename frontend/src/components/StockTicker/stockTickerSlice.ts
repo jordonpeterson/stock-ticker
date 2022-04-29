@@ -1,4 +1,5 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit'
+import {getTickerData} from "./stockTickerAPI";
 
 const initialState = {
     tickerInfo: {
@@ -20,11 +21,18 @@ export const stockTickerSlice = createSlice({
         setStockTickerData: (state, action) => {
             state = action.payload
         },
+    },
+    extraReducers(builder) {
+        builder.addCase(loadTickerData.fulfilled, (state, action) => {
+            state.tickerInfo = action.payload;
+            state.status = 'success'
+        })
     }
 })
 
 export const loadTickerData = createAsyncThunk('stockTicker/loadTickerData', async () => {
-
+        const result = await getTickerData()
+        return result
     }
 )
 
