@@ -1,5 +1,5 @@
 import React, {FC, useState} from 'react';
-import styles from './StockTicker.module.css';
+import styles from './StockTicker.module.scss';
 import DisplayTable from "../DisplayTable/DisplayTable";
 import {useDispatch, useSelector} from "react-redux";
 import {loadTickerData, selectStockTickerData} from "./stockTickerSlice";

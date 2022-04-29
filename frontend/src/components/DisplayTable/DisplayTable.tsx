@@ -1,5 +1,5 @@
 import React, {FC} from 'react';
-import styles from './DisplayTable.module.css';
+import styles from './DisplayTable.module.scss';
 import {TickerData} from "../../models/TickerData";
 
 interface DisplayTableProps {
