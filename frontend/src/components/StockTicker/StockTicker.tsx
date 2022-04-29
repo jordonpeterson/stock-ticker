@@ -16,7 +16,7 @@ const StockTicker: FC<StockTickerProps> = () => {
         event.preventDefault()
         if (ticker) {
             console.log('Selected Ticker: ' + ticker)
-            dispatch(loadTickerData())
+            dispatch(loadTickerData(ticker))
         }
     }
 

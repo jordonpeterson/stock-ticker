@@ -37,8 +37,8 @@ export const stockTickerSlice = createSlice({
     }
 })
 
-export const loadTickerData = createAsyncThunk('stockTicker/loadTickerData', async () => {
-        const result = await getTickerData()
+export const loadTickerData = createAsyncThunk('stockTicker/loadTickerData', async (ticker:string) => {
+        const result = await getTickerData(ticker)
         return result
     }
 )
