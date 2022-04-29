@@ -27,6 +27,13 @@ export const stockTickerSlice = createSlice({
             state.tickerInfo = action.payload;
             state.status = 'success'
         })
+        builder.addCase(loadTickerData.rejected, (state, action) => {
+            state.status = 'failed'
+        })
+        builder.addCase(loadTickerData.pending, (state, action) => {
+            state.tickerInfo = initialState.tickerInfo
+            state.status = 'pending'
+        })
     }
 })
 
