@@ -9,15 +9,14 @@ interface StockTickerProps {
 
 const StockTicker: FC<StockTickerProps> = () => {
     const dispatch = useDispatch();
-    const [tickerData, setTickerData] = useState(useSelector(selectStockTickerData))
+    const tickerData = useSelector(selectStockTickerData)
     const [ticker, setTicker] = useState('')
 
     async function handleSubmit(event: any) {
         event.preventDefault()
         if (ticker) {
             console.log('Selected Ticker: ' + ticker)
-            const response = dispatch(loadTickerData())
-            setTickerData(response)
+            dispatch(loadTickerData())
         }
     }
 
