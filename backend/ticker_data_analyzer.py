@@ -46,7 +46,6 @@ class TickerDataAnalyzer:
         min_price = find_min(stock_ticker_results, self.min_price_key)
         return round(min_price, self.price_significant_figures)
 
-    # TODO verify if we calculated average price the right way
     def _find_avg_price(self, stock_ticker_results):
         total_price = 0
         for result in stock_ticker_results:
@@ -67,4 +66,5 @@ class TickerDataAnalyzer:
         cumulative_volume = 0
         for result in stock_ticker_results:
             cumulative_volume += result[self.volume_key]
-        return cumulative_volume / len(stock_ticker_results)
+        avg_volume = cumulative_volume / len(stock_ticker_results)
+        return round(avg_volume, 0)
