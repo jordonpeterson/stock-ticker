@@ -17,9 +17,9 @@
 
 #ticker-form-submit-button {
     background: rgba(71,150,236,255);
-    min-width: 100px;
+    min-width: 90px;
     color: white;
     border: none;
-    padding: 5px;
+    padding: 8px;
     border-radius: 15%;
 }
