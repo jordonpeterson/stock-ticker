@@ -14,9 +14,9 @@ const StockTicker: FC<StockTickerProps> = () => {
 
     async function handleSubmit(event: any) {
         event.preventDefault()
-        if (ticker) {
-            console.log('Selected Ticker: ' + ticker)
-            dispatch(loadTickerData(ticker))
+        if (ticker && ticker.trim()) {
+            console.log('Selected Ticker: ' + ticker.trim())
+            dispatch(loadTickerData(ticker.trim()))
         }
     }
 
