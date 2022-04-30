@@ -17,7 +17,6 @@ class MyTestCase(unittest.TestCase):
         result = lambda_function.lambda_handler(self.non_existent_ticker_lambda_event, {})
         assert result['statusCode'] == 400
 
-    # TODO handle wrong headers
     def test_lambda_handler_missing_headers(self):
         result = lambda_function.lambda_handler(self.wrong_headers_lambda_event, {})
         assert result['statusCode'] == 400
@@ -38,11 +37,9 @@ class MyTestCase(unittest.TestCase):
                                                                   'endDate': '2020-12-31'},
                                         }
     wrong_headers_lambda_event = {'httpMethod': 'GET',
-                                  'queryStringParameters': {
-                                      'a': 'a',
-                                      'b': 'b',
-                                      'c': 'c'
-                                  }
+                                  'queryStringParameters': {'a': 'a',
+                                                            'b': 'b',
+                                                            'c': 'c'}
                                   }
 
 
