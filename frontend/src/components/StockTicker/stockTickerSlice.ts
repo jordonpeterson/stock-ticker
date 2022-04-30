@@ -17,11 +17,7 @@ const initialState = {
 export const stockTickerSlice = createSlice({
     name: 'stockTicker',
     initialState,
-    reducers: {
-        setStockTickerData: (state, action) => {
-            state = action.payload
-        },
-    },
+    reducers: {},
     extraReducers(builder) {
         builder.addCase(loadTickerData.fulfilled, (state, action) => {
             state.tickerInfo = action.payload;
@@ -29,6 +25,7 @@ export const stockTickerSlice = createSlice({
         })
         builder.addCase(loadTickerData.rejected, (state, action) => {
             state.status = 'failed'
+            window.alert(action.payload)
         })
         builder.addCase(loadTickerData.pending, (state, action) => {
             state.tickerInfo = initialState.tickerInfo
@@ -37,13 +34,10 @@ export const stockTickerSlice = createSlice({
     }
 })
 
-export const loadTickerData = createAsyncThunk('stockTicker/loadTickerData', async (ticker:string) => {
+export const loadTickerData = createAsyncThunk('stockTicker/loadTickerData', async (ticker: string) => {
         const result = await getTickerData(ticker)
         return result
     }
 )
 
-export const {setStockTickerData} = stockTickerSlice.actions
-
 export const selectStockTickerData = (state: any) => state.stockTicker.tickerInfo
-
