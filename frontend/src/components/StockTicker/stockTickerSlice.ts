@@ -40,3 +40,5 @@ export const loadTickerData = createAsyncThunk('stockTicker/loadTickerData', asy
 )
 
 export const selectStockTickerData = (state: any) => state.stockTicker.tickerInfo
+
+export const selectStockTickerStatus = (state: any) => state.stockTicker.status
