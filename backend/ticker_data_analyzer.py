@@ -14,7 +14,6 @@ def find_min(stock_ticker_results, key):
     return min_value[key]
 
 
-# TODO could I find a more efficient way to compute these values? This could be a problem with big data
 class TickerDataAnalyzer:
     def __init__(self):
         pass
