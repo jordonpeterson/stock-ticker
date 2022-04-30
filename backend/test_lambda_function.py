@@ -14,7 +14,7 @@ class MyTestCase(unittest.TestCase):
 
     def test_lambda_handler_non_existent_ticker(self):
         result = lambda_function.lambda_handler(self.non_existent_ticker_lambda_event, {})
-        assert result['statusCode'] == 400
+        assert result['statusCode'] == 404
 
     def test_lambda_handler_missing_headers(self):
         result = lambda_function.lambda_handler(self.wrong_headers_lambda_event, {})
