@@ -1,4 +1,5 @@
 import requests
+import os
 
 
 def get_query_param(event, query_param_name):
@@ -23,6 +24,7 @@ def verify_request_is_of_expected_rest_type(event, expected_type):
 class TickerRequestClient:
     def __init__(self):
         self.urlBase = 'https://api.polygon.io/v2'
+        self.polygon_api_key = os.environ['POLYGON_API_KEY']
 
     def get_ticker_info(self, event):
         verify_request_is_of_expected_rest_type(event, 'GET')
@@ -33,7 +35,6 @@ class TickerRequestClient:
         return response
 
     def make_ticker_info_rest_request(self, ticker, start_date, end_date):
-        # move API key to environment variable in lambda
-        params = {'apiKey': 'NsSybiyV7LfRsy0CtMI9IcyRN2Dfkl54'}
+        params = {'apiKey': self.polygon_api_key}
         url = self.urlBase + "/aggs/ticker/" + ticker + "/range/1/day/" + start_date + "/" + end_date
         return requests.get(url, params)
