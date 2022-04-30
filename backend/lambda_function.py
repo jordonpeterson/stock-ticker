@@ -27,7 +27,7 @@ def lambda_handler(event, context):
     if ticker_results.json()['status'] == "ERROR":
         return respond(ticker_results.status_code, ticker_results.text)
     if ticker_results.json()['resultsCount'] == 0:
-        return respond(404, 'Could not find any results for ticker')
+        return respond(404, 'Could not find any results for ticker: ' + ticker_results.json()['ticker'])
     results = ticker_results.json()['results']
 
     report_generator = TickerDataAnalyzer()
