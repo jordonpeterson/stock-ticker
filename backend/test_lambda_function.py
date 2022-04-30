@@ -12,7 +12,6 @@ class MyTestCase(unittest.TestCase):
         result = lambda_function.lambda_handler(self.failure_lambda_event, {})
         assert result['statusCode'] == 400
 
-    # TODO handle non existent ticker
     def test_lambda_handler_non_existent_ticker(self):
         result = lambda_function.lambda_handler(self.non_existent_ticker_lambda_event, {})
         assert result['statusCode'] == 400
