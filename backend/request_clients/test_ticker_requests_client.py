@@ -34,6 +34,10 @@ class TestTickerRequestClient(TestCase):
 
         self.assertEqual(result.json()['status'], "ERROR")
 
+    def test_400_returned_when_ticker_is_greater_than_5_characters(self):
+        with self.assertRaises(ValueError):
+            self.ticker_request_client.get_ticker_info(self.ticker_param_too_long_lambda_event)
+
     happy_path_lambda_event = {'httpMethod': 'GET',
                                'queryStringParameters': {'ticker': 'AAPL',
                                                          'startDate': '2020-01-01',
@@ -66,7 +70,7 @@ class TestTickerRequestClient(TestCase):
                                                                  'endDate': '2020-12-31'},
                                        }
     ticker_param_too_long_lambda_event = {'httpMethod': 'GET',
-                                          'queryStringParameters': {'ticker': 'TOOLONG',
+                                          'queryStringParameters': {'ticker': 'RLYLON',
                                                                     'startDate': '2020-01-01',
                                                                     'endDate': '2020-12-31'},
                                           }

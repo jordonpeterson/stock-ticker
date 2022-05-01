@@ -29,9 +29,7 @@ class TickerRequestClient:
         verify_request_is_of_expected_rest_type(event, 'GET')
         ticker = get_query_param(event, 'ticker')
         if len(ticker) > 5:
-            raise ValueError(
-                "Ticker: " + ticker + " is too long. The maximum length is 5 characters. Its actual length was "
-                + len(ticker))
+            raise ValueError("Ticker: " + ticker + " is too long. The maximum length is 5 characters.")
 
         start_date = get_query_param(event, 'startDate')
         end_date = get_query_param(event, 'endDate')
