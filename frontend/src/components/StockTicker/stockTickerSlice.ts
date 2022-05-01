@@ -1,5 +1,6 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit'
 import {getTickerData} from "./stockTickerAPI";
+import {TickerData} from "../../models/TickerData";
 
 const initialState = {
     tickerInfo: {
@@ -25,7 +26,7 @@ export const stockTickerSlice = createSlice({
         })
         builder.addCase(loadTickerData.rejected, (state, action) => {
             state.status = 'failed'
-            window.alert(action.payload)
+            window.alert(action.error.message)
         })
         builder.addCase(loadTickerData.pending, (state, action) => {
             state.tickerInfo = initialState.tickerInfo
@@ -34,8 +35,13 @@ export const stockTickerSlice = createSlice({
     }
 })
 
-export const loadTickerData = createAsyncThunk('stockTicker/loadTickerData', async (ticker: string) => {
-        return await getTickerData(ticker)
+export const loadTickerData = createAsyncThunk('stockTicker/loadTickerData',
+    async (ticker: string): Promise<TickerData> => {
+        const result = await getTickerData(ticker)
+        if (typeof result === 'string') {
+            throw new Error(result)
+        }
+        return result
     }
 )
 

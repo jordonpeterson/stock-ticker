@@ -6,7 +6,6 @@ def get_query_param(event, query_param_name):
     query_parameters = event['queryStringParameters']
     if query_param_name in query_parameters:
         param = query_parameters[query_param_name]
-        # Add other validation. The query params come from the frontend and are not safe.
         if len(param) == 0:
             raise ValueError("The " + query_param_name + " query parameter was empty. Value: " + param)
         return param
