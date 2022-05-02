@@ -28,6 +28,7 @@ class TickerRequestClient:
     def get_ticker_info(self, event):
         verify_request_is_of_expected_rest_type(event, 'GET')
         ticker = get_query_param(event, 'ticker')
+        ticker = ticker.upper()
         if len(ticker) > 5:
             raise ValueError("Ticker: " + ticker + " is too long. The maximum length is 5 characters.")
 
