@@ -21,7 +21,7 @@ const StockTicker: FC<StockTickerProps> = () => {
         event.preventDefault()
         if (ticker && ticker.trim()) {
             console.log('Selected Ticker: ' + ticker.trim())
-            dispatch(loadTickerData(ticker.trim()))
+            dispatch(loadTickerData(ticker.trim().toUpperCase()))
         }
     }
 
