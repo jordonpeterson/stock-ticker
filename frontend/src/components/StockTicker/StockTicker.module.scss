@@ -9,7 +9,7 @@
 
   input[type=submit] {
     background: rgba(71, 150, 236, 255);
-    min-width: 90px;
+    min-width: 90px;Remove
     color: white;
     border: none;
     padding: 8px;
@@ -18,10 +18,6 @@
 
   input:focus {
     outline-width: 0;
-  }
-
-  div.ticker-form-wrapper {
-    margin: 10px;
   }
 }
 
