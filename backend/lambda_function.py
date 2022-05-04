@@ -1,6 +1,7 @@
 import json
-from request_clients.ticker_requests_client import TickerRequestClient
-from ticker_data_analyzer import TickerDataAnalyzer
+
+from backend.request_clients.ticker_requests_client import TickerRequestClient
+from backend.data_analyzers.ticker_data_analyzer import TickerDataAnalyzer
 
 print('Loading function')
 

@@ -1,7 +1,7 @@
 import unittest
 from unittest import TestCase
-from ticker_data_analyzer import TickerDataAnalyzer
-import ticker_data_analyzer
+from backend.data_analyzers.ticker_data_analyzer import TickerDataAnalyzer
+from backend.data_analyzers import ticker_data_analyzer
 
 
 class TestTickerDataAnalyzer(TestCase):

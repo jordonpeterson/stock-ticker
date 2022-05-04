@@ -1,6 +1,6 @@
 import unittest
 from unittest import TestCase
-from ticker_requests_client import TickerRequestClient
+from backend.request_clients.ticker_requests_client import TickerRequestClient
 
 
 # TODO Mock responses from server
